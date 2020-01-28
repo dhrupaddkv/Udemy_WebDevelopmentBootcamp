@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+  <body>
+    <h1>Contact Me</h1>
+    <p><a href="mailto:dhrupaddkv@gmail.com">dhrupaddkv@gmail.com</a></p>
+    <p>some address</p>
+    <p>some link to site</p>
+    <hr/>
+    <form action="mailto:dhrupaddkv@gmail.com" method="post" enctype="text/plain">
+      <label for="yourname">Name: </label>
+      <input type="text" name="yourname" id="name" />
+      <br />
+      <label for="color">color</label>
+      <input type="color" name="color" id="color" />
+      <br />
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" />
+      <br />
+      <label for="subscribebutton">Do you want to subscribe?</label>
+      <input type="checkbox" name="subscribebutton" id="subscribebutton" />
+      <br />
+      <label for="range"></label>
+      <input type="range" name="range" id="range">
+      <br/>
+      <label for="datepicker">Date Picker</label>
+      <input type="date" name="datepicker" id="datepicker">
+      <br/>
+      <label>Gender: </label>
+      <input type="radio" name="gender" id="gender">Male</input>
+      <input type="radio" name="gender" id="gender">Female</input>
+      <br/>
+      <label>Your Message: </label>
+      <br/>
+      <textarea name="yourmessage" id="yourmessage" cols="30" rows="10"></textarea>
+      <br/>
+      <input type="reset" />
+      <input type="submit" />
+    </form>
+  </body>
+</html>

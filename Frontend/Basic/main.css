@@ -1,0 +1,12 @@
+.container {
+  background: linear-gradient(60deg, rgb(0, 140, 255), yellow);
+  box-shadow: 5px 5px burlywood;
+}
+h1 {
+  color: rgb(13, 94, 121);
+}
+p {
+  color: #0a3810;
+  text-shadow: 2px 2px 5px black;
+}
+
