@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../jquery-3.4.1.js"/></script>
+    <style>
+      .newLine {
+        display: block;
+      }
+      .visibiltyClass {
+        visibility: hidden;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+    </div>
+    <div id="sampleDiv">
+      <button id="fetchButton" >Get Data</button>
+
+      <label class='newLine' id="statusLabel"/>
+      <label class='newLine' id="statusPhase"/>
+    </div>
+    <script>
+      $(document).ready(function() {
+        console.log("loaded");
+        $('#sampleDiv').on('click', '#fetchButton', () => {
+          $.ajax('https://api.meetup.com/2/cities', {
+            type:"GET",
+            contentType:'application/json',
+            dataType: 'jsonp',
+            beforeSend: ()=>{ $('#statusLabel').text("before Send"); }
+          })
+          .done((response) => {
+            console.log(response['results']);
+            $.each(response['results'], (index) => {
+              var city = response['results'][index].city;
+              var country = response['results'][index].localized_country_name;
+              var zip = response['results'][index].zip;
+              var lon = response['results'][index].lon;
+              var lat =response['results'][index].lat;
+              console.log(city + country + zip + lon + lat);
+              
+              var html = "<div class='card' style='display:inline-block; background-color: yellow; margin: 5px' id='index'><label class='newLine'>City: <span>" + city + "</span></label><label class='newLine'>Country: <span>" + country + "</span></label><label class='newLine'>zip: <span>" + zip + "</span></label><a href='#' data-get='get'>More Info</a><div data-id='more-info' class='visibiltyClass'><label class='newLine'>lon: " + lon + "<span></span></label><label class='newLine'>lat: <span>"+ lat + "</span></label></div></div>";
+$('#container').append(html);
+            });
+          })
+          .fail((req, errorType, errormsg)=>{
+            $('#statusLabel').text("Call failed to the server: error Type: " + errorType +" errormsg: "+ errormsg);
+          })
+          .always(()=> {
+            $('#statusPhase').text('Fiished ajax call');
+          });
+
+          $('#container').on('click', "a[data-get]", (event)=>{
+            event.preventDefault();
+            $(event.target).closest('.card').find("div[data-id]").toggleClass('visibiltyClass');
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
